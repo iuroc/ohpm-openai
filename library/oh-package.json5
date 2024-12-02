@@ -1,0 +1,17 @@
+{
+    "name": "@iuroc/openai",
+    "version": "1.0.0",
+    "description": "OpenAI 请求工具库，基本还原官方 npm 库的类型定义",
+    "main": "Index.ets",
+    "author": "iuroc",
+    "keywords": [
+        "openai",
+        "chatgpt"
+    ],
+    "license": "Apache-2.0",
+    "packageType": "InterfaceHar",
+    "dependencies": {
+    },
+    "homepage": "https://github.com/iuroc/ohpm-openai#readme",
+    "repository": "https://github.com/iuroc/ohpm-openai"
+}
