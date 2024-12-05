@@ -1,6 +1,6 @@
 {
     "name": "@iuroc/openai",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "OpenAI 请求工具库，基本保留原 npm 库 TypeScript 定义。",
     "main": "Index.ets",
     "author": "iuroc",
@@ -8,4 +8,10 @@
     "homepage": "https://github.com/iuroc/ohpm-openai#readme",
     "license": "Apache-2.0",
     "dependencies": {},
+    "keywords": [
+        "openai",
+        "request",
+        "http",
+        "npm"
+    ]
 }
