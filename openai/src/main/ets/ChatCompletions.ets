@@ -25,34 +25,33 @@ export class ChatCompletions {
 
     create(
         body: ChatCompletionCreateParamsNonStreaming,
-        onData?: OnDataCallback,
-        requestConfiguration?: rcp.Configuration
+        options?: ChatCompletionsCreateOptions
     ): ChatCompletionsReturnType
 
     create(
         body: ChatCompletionCreateParamsStreaming,
-        onData?: OnDataCallback,
-        requestConfiguration?: rcp.Configuration
+        options?: ChatCompletionsCreateOptions
     ): ChatCompletionsReturnType
 
     create(
         body: ChatCompletionCreateParamsBase,
-        onData?: OnDataCallback,
-        requestConfiguration?: rcp.Configuration
+        options?: ChatCompletionsCreateOptions
     ): ChatCompletionsReturnType
 
     create(
         body: ChatCompletionCreateParams,
-        onData?: OnDataCallback,
-        requestConfiguration?: rcp.Configuration
+        options?: ChatCompletionsCreateOptions
     ): ChatCompletionsReturnType {
         const headers: rcp.RequestHeaders = {
             'content-type': 'application/json',
             'authorization': `Bearer ${this.apiKey}`
         }
-        const session = rcp.createSession({ headers, requestConfiguration })
+        const session = rcp.createSession({
+            headers,
+            requestConfiguration: options?.requestConfiguration
+        })
         let oldString = ''
-        const destination: rcp.ResponseBodyDestination | undefined = onData
+        const destination: rcp.ResponseBodyDestination | undefined = options?.onData
             ? {
                 kind: 'stream', stream: {
                     async write(data) {
@@ -73,7 +72,7 @@ export class ChatCompletions {
                                 oldString += line
                             }
                         }
-                        await onData(result)
+                        await options.onData!(result)
                     }
                 }
             } : undefined
@@ -90,6 +89,11 @@ export class ChatCompletions {
 export interface ChatCompletionsReturnType {
     session: rcp.Session
     response: Promise<rcp.Response>
+}
+
+export interface ChatCompletionsCreateOptions {
+    onData?: OnDataCallback
+    requestConfiguration?: rcp.Configuration
 }
 
 export type OnDataCallback = (chunks: ChatCompletionChunk[]) => Promise<void | number> | void | number

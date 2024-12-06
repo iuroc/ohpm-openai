@@ -60,5 +60,5 @@ const result = openai.chat.completions.create({
         { role: 'user', content: 'hello' }
     ],
     stream: true
-}, onData)
+}, { onData })
 ```
