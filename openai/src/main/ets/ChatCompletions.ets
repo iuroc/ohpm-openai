@@ -25,28 +25,31 @@ export class ChatCompletions {
 
     create(
         body: ChatCompletionCreateParamsNonStreaming,
-        onData?: OnDataCallback
+        onData?: OnDataCallback,
+        requestConfiguration?: rcp.Configuration
     ): ChatCompletionsReturnType
 
     create(
         body: ChatCompletionCreateParamsStreaming,
-        onData?: OnDataCallback
+        onData?: OnDataCallback,
+        requestConfiguration?: rcp.Configuration
     ): ChatCompletionsReturnType
 
     create(
         body: ChatCompletionCreateParamsBase,
-        onData?: OnDataCallback
+        onData?: OnDataCallback,
+        requestConfiguration?: rcp.Configuration
     ): ChatCompletionsReturnType
 
     create(
         body: ChatCompletionCreateParams,
-        onData?: OnDataCallback
+        onData?: OnDataCallback,
+        requestConfiguration?: rcp.Configuration
     ): ChatCompletionsReturnType {
         const headers: rcp.RequestHeaders = {
             'content-type': 'application/json',
             'authorization': `Bearer ${this.apiKey}`
         }
-        const requestConfiguration: rcp.Configuration = {}
         const session = rcp.createSession({ headers, requestConfiguration })
         let oldString = ''
         const destination: rcp.ResponseBodyDestination | undefined = onData
