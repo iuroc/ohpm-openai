@@ -1,4 +1,4 @@
-import { OpenAI } from '@iuroc/openai'
+import { OpenAI } from '@iuroc/openai/Index'
 
 @Entry
 @Component
@@ -16,7 +16,7 @@ struct Index {
                     middle: { anchor: '__container__', align: HorizontalAlign.Center }
                 })
                 .onClick(() => {
-                    console.log(JSON.stringify(new OpenAI().options))
+                    new OpenAI()
                 })
         }
         .height('100%')
